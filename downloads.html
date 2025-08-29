@@ -1,34 +1,406 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Downloads</title>
-</head>
-<body>
-	<header>
-		<nav>
-			<ul>
-				<li><a href="index.html">Home</a></li>
-		<div><h2>Latest Version</h1></div>
-			<a href="files/DB_001.rar" download>Download</a>
-	</header>
-	<div><h3>General Instructions</h3></div>
-		<ol>
-			<li>Create a clean install of valheim.</li>
-			<li>Download the latest version of files from above.</li>
-			<li>Navigate to your Valheim installation folder(the folder with valheim.exe inside).<li>
-				<img src="media/nav_steam_local_files.png" alt="steam navigation example">
-			<li>Copy the contents of the zip into the game folder, overwriting any existing files.
-			<li>Start the game(you will see a black box open with the game, this is normal).</li>
-			<li>Verify in the bottom right corner of the title screen looks similar to this.</li>
-				<img src="media/bottom-right.png" alt="title screen version example">
-			<li>Connect to the server with the provided IP/Port in Discord.</li>
-			<li>fuck you.</li>
-		</ol>
-	<div><h3>Previous Versions</h3></div>
-		<ul>
-			<li>N/a</li>
-		</ul>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Downloads // DiarrheaBalls</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Doodle+Shadow&family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Page-specific spice without touching global file */
+      .downloads-hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: clamp(16px, 3vw, 40px);
+        align-items: center;
+        margin-top: 8px;
+      }
+      @media (max-width: 900px) {
+        .downloads-hero {
+          grid-template-columns: 1fr;
+        }
+      }
+      .terminal-card {
+        background: radial-gradient(
+            circle at 15% 0%,
+            rgba(255, 77, 109, 0.18),
+            transparent 60%
+          ),
+          rgba(0, 0, 0, 0.25);
+        border: 2px dashed rgba(255, 255, 255, 0.18);
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px) saturate(130%);
+      }
+      .dl-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        margin-top: 12px;
+      }
+      .badge {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 6px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        font-size: 13px;
+        color: #ffd166;
+      }
+      .steps {
+        counter-reset: step;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .steps li {
+        counter-increment: step;
+        margin: 12px 0;
+        padding-left: 42px;
+        position: relative;
+      }
+      .steps li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff4d6d, #b388ff);
+        color: #0b0b10;
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+        box-shadow: 0 0 12px rgba(255, 77, 109, 0.45);
+      }
+      .downloads-stickers {
+        position: relative;
+        min-height: 320px;
+      }
+      .downloads-stickers img {
+        position: absolute;
+        width: clamp(80px, 24vw, 220px);
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
+      }
+      .downloads-stickers img:nth-child(1) {
+        top: 6%;
+        left: 4%;
+        transform: rotate(-8deg);
+        animation: wobble 6s infinite ease-in-out;
+      }
+      .downloads-stickers img:nth-child(2) {
+        top: 28%;
+        right: 8%;
+        transform: rotate(8deg);
+        animation: bounce 5.5s infinite ease-in-out;
+      }
+      .downloads-stickers img:nth-child(3) {
+        bottom: 6%;
+        left: 18%;
+        transform: rotate(2deg);
+        animation: spinny 7s infinite ease-in-out;
+      }
+      .downloads-stickers img:nth-child(4) {
+        bottom: -2%;
+        right: 12%;
+        transform: rotate(-4deg);
+        animation: rattle 0.9s infinite;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: clamp(16px, 3vw, 32px);
+        margin-top: 22px;
+      }
+      @media (max-width: 1000px) {
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      .polaroid img {
+        max-height: 280px;
+        object-fit: cover;
+        width: 100%;
+      }
+      .edgy-note {
+        margin-top: 8px;
+        color: #ff4d6d;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-shadow: 0 0 10px rgba(255, 77, 109, 0.35);
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      table.cursed {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(0, 0, 0, 0.25)
+          ),
+          var(--noise-url);
+        background-size: auto, 256px 256px;
+        border: 2px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+      }
+      .cursed th,
+      .cursed td {
+        padding: 12px 14px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.18);
+        white-space: nowrap;
+      }
+      .cursed th {
+        text-align: left;
+        font-family: "Rubik Doodle Shadow", system-ui, sans-serif;
+        color: #38f9d7;
+      }
+      .cursed tr:hover {
+        background: rgba(255, 77, 109, 0.08);
+      }
+      .skull {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        vertical-align: -3px;
+        margin-right: 6px;
+        filter: drop-shadow(0 0 6px rgba(255, 77, 109, 0.5));
+      }
+    </style>
+  </head>
+  <body class="bg-static">
+    <div class="noise"></div>
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="scanline"></div>
+
+    <header class="header crt">
+      <nav class="nav">
+        <div class="brand">
+          <h1 class="logo flicker">Downloads</h1>
+          <p class="tagline shake">
+            This isn’t a download page. It’s a ritual. Hydrate first.
+          </p>
+        </div>
+        <ul class="nav-links">
+          <li><a class="btn neon-btn" href="index.html">Home</a></li>
+          <li><a class="btn ghost-btn" href="frick.html">Don’t Click</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="downloads-hero">
+        <div>
+          <h2 class="headline glitch" data-text="LATEST VERSION: DB_001">
+            LATEST VERSION: DB_001
+          </h2>
+          <div class="dl-row">
+            <a class="btn mega-btn danger-btn" href="files/DB_001.rar" download
+              >Download Now</a
+            >
+            <span class="badge">
+              <img
+                class="skull"
+                src="https://upload.wikimedia.org/wikipedia/commons/0/02/Skull_and_crossbones.svg"
+                alt=""
+              />
+              checksum: chaos-approved
+            </span>
+            <span class="badge">
+              <img
+                class="skull"
+                src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Eye_icon.svg"
+                alt=""
+              />
+              last updated: when you blinked
+            </span>
+          </div>
+
+          <div class="terminal-card" style="margin-top: 16px">
+            <p class="edgy-note">
+              Warning: If Windows screams, that’s just the vibes calibrating.
+            </p>
+            <p style="margin: 0">
+              Requires clean Valheim install. Backup your saves unless you enjoy
+              chaos speedruns.
+            </p>
+          </div>
+        </div>
+
+        <div class="downloads-stickers">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Pepe_the_Frog.svg"
+            alt="frog of destiny"
+          />
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/0/00/Emoji_u1f480.svg"
+            alt="skull emoji"
+          />
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Vaporwave_Palm_Tree.svg"
+            alt="vaporwave palm"
+          />
+          <img
+            src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif"
+            alt="psychedelic blob"
+          />
+        </div>
+      </section>
+
+      <section class="ticker">
+        <div class="marquee">
+          <span>
+            READ THE INSTRUCTIONS — QUESTION REALITY — HUG YOUR BACKUPS — TRUST
+            THE NOODLES — PATCH NOTES ARE JUST PROPHECIES —
+          </span>
+        </div>
+      </section>
+
+      <section class="grid-2">
+        <article class="card">
+          <h3>General Instructions</h3>
+          <ol class="steps">
+            <li>Create a clean install of Valheim.</li>
+            <li>Download the latest version from the button above.</li>
+            <li>
+              Navigate to your Valheim installation folder (the one with
+              valheim.exe inside).
+            </li>
+            <li>
+              Open Steam → Library → Right-click Valheim → Manage → Browse local
+              files.
+              <figure class="polaroid" style="margin-top: 10px">
+                <img
+                  src="https://i.imgur.com/0v3c5f3.jpeg"
+                  alt="Steam navigation example to local files"
+                />
+                <figcaption>Obey the cog. It knows the path.</figcaption>
+              </figure>
+            </li>
+            <li>
+              Extract the contents of the archive into the game folder,
+              overwriting files when asked.
+            </li>
+            <li>
+              Launch the game. A mysterious black box may appear alongside the
+              game — this is normal. It whispers kind things.
+            </li>
+            <li>
+              Verify the title screen shows the mod string in the bottom-right,
+              looking similar to:
+              <figure class="polaroid" style="margin-top: 10px">
+                <img
+                  src="https://i.imgur.com/1x8u5bV.png"
+                  alt="Valheim title screen version example"
+                />
+                <figcaption>Behold the sacred corner text.</figcaption>
+              </figure>
+            </li>
+            <li>Connect to the server with the IP/Port from Discord.</li>
+            <li>
+              If you hit issues, purge with fire (verify files) and try again.
+            </li>
+          </ol>
+        </article>
+
+        <aside class="card card-static">
+          <h3>Edge Enhancers</h3>
+          <p>
+            Optional visual corruption packs for your third eye:
+          </p>
+          <ul>
+            <li>
+              <a
+                class="btn mini neon-btn"
+                href="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
+                target="_blank"
+                rel="noopener"
+                >Void Swirl</a
+              >
+            </li>
+            <li>
+              <a
+                class="btn mini ghost-btn"
+                href="https://media.giphy.com/media/26BRzozg4TCBXv6QU/giphy.gif"
+                target="_blank"
+                rel="noopener"
+                >Endless Tunnel</a
+              >
+            </li>
+            <li>
+              <a
+                class="btn mini danger-btn"
+                href="https://media.giphy.com/media/l0Exk8EUzSLsrErEQ/giphy.gif"
+                target="_blank"
+                rel="noopener"
+                >Glitch Cube</a
+              >
+            </li>
+          </ul>
+          <figure class="polaroid tilt" style="margin-top: 12px">
+            <img
+              src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1200&auto=format&fit=crop"
+              alt="Neon skull art"
+            />
+            <figcaption>Install at your own enlightenment.</figcaption>
+          </figure>
+        </aside>
+      </section>
+
+      <section style="margin-top: 24px">
+        <article class="card">
+          <h3>
+            <img
+              class="skull"
+              src="https://upload.wikimedia.org/wikipedia/commons/0/02/Skull_and_crossbones.svg"
+              alt=""
+            />
+            Previous Versions
+          </h3>
+          <div class="table-wrap">
+            <table class="cursed">
+              <thead>
+                <tr>
+                  <th>Version</th>
+                  <th>Date</th>
+                  <th>Size</th>
+                  <th>Notes</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>None yet. The future is unwritten.</td>
+                  <td>
+                    <span class="badge">N/A</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer crt">
+      <p>
+        © DiarrheaBalls. All rights reversed. Backups are love. Backups are
+        life.
+      </p>
+    </footer>
+  </body>
 </html>
