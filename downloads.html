@@ -3,404 +3,189 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Downloads // DiarrheaBalls</title>
+    <title>Downloads // Poison Portal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Doodle+Shadow&family=Inter:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Creepster&family=Press+Start+2P&family=VT323&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
     <style>
-      /* Page-specific spice without touching global file */
-      .downloads-hero {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: clamp(16px, 3vw, 40px);
-        align-items: center;
-        margin-top: 8px;
+      /* Edgy overrides for this page */
+      .ritual-card {
+        background: radial-gradient(circle at 20% 10%, #ff4d6d, transparent 50%);
+        border: 3px dotted #b388ff;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(255, 77, 109, 0.6);
       }
-      @media (max-width: 900px) {
-        .downloads-hero {
-          grid-template-columns: 1fr;
-        }
-      }
-      .terminal-card {
-        background: radial-gradient(
-            circle at 15% 0%,
-            rgba(255, 77, 109, 0.18),
-            transparent 60%
-          ),
-          rgba(0, 0, 0, 0.25);
-        border: 2px dashed rgba(255, 255, 255, 0.18);
-        border-radius: 16px;
-        padding: 16px;
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(4px) saturate(130%);
-      }
-      .dl-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        align-items: center;
-        margin-top: 12px;
-      }
-      .badge {
-        display: inline-flex;
-        gap: 8px;
-        align-items: center;
-        padding: 6px 10px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 999px;
-        font-size: 13px;
-        color: #ffd166;
-      }
-      .steps {
-        counter-reset: step;
+      .cursed-steps {
         list-style: none;
         padding: 0;
-        margin: 0;
+        counter-reset: curse;
       }
-      .steps li {
-        counter-increment: step;
-        margin: 12px 0;
-        padding-left: 42px;
+      .cursed-steps li {
+        counter-increment: curse;
         position: relative;
+        padding-left: 40px;
+        margin: 14px 0;
       }
-      .steps li::before {
-        content: counter(step);
+      .cursed-steps li::before {
+        content: counter(curse) "🩸";
         position: absolute;
         left: 0;
-        top: 0;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #ff4d6d, #b388ff);
-        color: #0b0b10;
-        display: grid;
-        place-items: center;
-        font-weight: 900;
-        box-shadow: 0 0 12px rgba(255, 77, 109, 0.45);
-      }
-      .downloads-stickers {
-        position: relative;
-        min-height: 320px;
-      }
-      .downloads-stickers img {
-        position: absolute;
-        width: clamp(80px, 24vw, 220px);
-        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
-      }
-      .downloads-stickers img:nth-child(1) {
-        top: 6%;
-        left: 4%;
-        transform: rotate(-8deg);
-        animation: wobble 6s infinite ease-in-out;
-      }
-      .downloads-stickers img:nth-child(2) {
-        top: 28%;
-        right: 8%;
-        transform: rotate(8deg);
-        animation: bounce 5.5s infinite ease-in-out;
-      }
-      .downloads-stickers img:nth-child(3) {
-        bottom: 6%;
-        left: 18%;
-        transform: rotate(2deg);
-        animation: spinny 7s infinite ease-in-out;
-      }
-      .downloads-stickers img:nth-child(4) {
-        bottom: -2%;
-        right: 12%;
-        transform: rotate(-4deg);
-        animation: rattle 0.9s infinite;
-      }
-      .grid-2 {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: clamp(16px, 3vw, 32px);
-        margin-top: 22px;
-      }
-      @media (max-width: 1000px) {
-        .grid-2 {
-          grid-template-columns: 1fr;
-        }
-      }
-      .polaroid img {
-        max-height: 280px;
-        object-fit: cover;
-        width: 100%;
-      }
-      .edgy-note {
-        margin-top: 8px;
+        font-size: 20px;
         color: #ff4d6d;
-        font-weight: 700;
-        letter-spacing: 0.02em;
-        text-shadow: 0 0 10px rgba(255, 77, 109, 0.35);
+        text-shadow: 0 0 8px #ff4d6d;
       }
-      .table-wrap {
-        overflow-x: auto;
-      }
-      table.cursed {
+      .edgy-table {
         width: 100%;
-        border-collapse: collapse;
-        margin-top: 12px;
-        background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.04),
-            rgba(0, 0, 0, 0.25)
-          ),
-          var(--noise-url);
-        background-size: auto, 256px 256px;
-        border: 2px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+        border-collapse: separate;
+        border-spacing: 0 8px;
+        background: rgba(0, 0, 0, 0.4);
       }
-      .cursed th,
-      .cursed td {
-        padding: 12px 14px;
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.18);
-        white-space: nowrap;
-      }
-      .cursed th {
-        text-align: left;
-        font-family: "Rubik Doodle Shadow", system-ui, sans-serif;
+      .edgy-table th {
+        font-family: "Creepster", cursive;
         color: #38f9d7;
+        text-shadow: 0 0 10px #38f9d7;
       }
-      .cursed tr:hover {
-        background: rgba(255, 77, 109, 0.08);
+      .edgy-table td {
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 77, 109, 0.3);
       }
-      .skull {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        vertical-align: -3px;
+      .edgy-table tr:hover {
+        background: rgba(179, 136, 255, 0.2);
+        transform: scale(1.02);
+        transition: 0.2s;
+      }
+      .skull-icon {
+        width: 20px;
+        vertical-align: middle;
         margin-right: 6px;
-        filter: drop-shadow(0 0 6px rgba(255, 77, 109, 0.5));
       }
     </style>
   </head>
-  <body class="bg-static">
-    <div class="noise"></div>
-    <div class="blob blob-a"></div>
-    <div class="blob blob-b"></div>
-    <div class="scanline"></div>
+  <body class="bg-trip">
+    <div class="fractal-noise"></div>
+    <div class="pulse-blob pulse-a"></div>
+    <div class="pulse-blob pulse-b"></div>
+    <div class="vhs-lines"></div>
 
-    <header class="header crt">
-      <nav class="nav">
+    <header class="header glitchy">
+      <nav class="nav warp">
         <div class="brand">
-          <h1 class="logo flicker">Downloads</h1>
-          <p class="tagline shake">
-            This isn’t a download page. It’s a ritual. Hydrate first.
+          <h1 class="logo creep">Downloads: The Ritual Begins</h1>
+          <p class="tagline jitter">
+            Ingest the files. Become one with the chaos. The mushrooms demand sacrifice.
           </p>
         </div>
         <ul class="nav-links">
-          <li><a class="btn neon-btn" href="index.html">Home</a></li>
-          <li><a class="btn ghost-btn" href="frick.html">Don’t Click</a></li>
+          <li><a class="btn acid-trip" href="index.html">Flee Home</a></li>
+          <li><a class="btn void-btn" href="frick.html">Embrace Frick</a></li>
         </ul>
       </nav>
     </header>
 
-    <main class="main">
-      <section class="downloads-hero">
-        <div>
-          <h2 class="headline glitch" data-text="LATEST VERSION: DB_001">
-            LATEST VERSION: DB_001
+    <main class="main melt">
+      <section class="hero">
+        <div class="hero-core">
+          <h2 class="headline warp-text" data-text="LATEST POISON: DB_001">
+            LATEST POISON: DB_001
           </h2>
-          <div class="dl-row">
-            <a class="btn mega-btn danger-btn" href="files/DB_001.rar" download
-              >Download Now</a
-            >
-            <span class="badge">
-              <img
-                class="skull"
-                src="https://upload.wikimedia.org/wikipedia/commons/0/02/Skull_and_crossbones.svg"
-                alt=""
-              />
-              checksum: chaos-approved
-            </span>
-            <span class="badge">
-              <img
-                class="skull"
-                src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Eye_icon.svg"
-                alt=""
-              />
-              last updated: when you blinked
-            </span>
-          </div>
-
-          <div class="terminal-card" style="margin-top: 16px">
-            <p class="edgy-note">
-              Warning: If Windows screams, that’s just the vibes calibrating.
-            </p>
-            <p style="margin: 0">
-              Requires clean Valheim install. Backup your saves unless you enjoy
-              chaos speedruns.
-            </p>
-          </div>
+          <a class="btn mega-void" href="files/DB_001.rar" download>Swallow the RAR</a>
+          <p class="drip">Checksum: Your soul. Updated: During your last nightmare.</p>
         </div>
-
-        <div class="downloads-stickers">
+        <div class="meme-vortex">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Pepe_the_Frog.svg"
-            alt="frog of destiny"
-          />
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/0/00/Emoji_u1f480.svg"
-            alt="skull emoji"
-          />
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Vaporwave_Palm_Tree.svg"
-            alt="vaporwave palm"
-          />
-          <img
+            class="meme wobble"
             src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif"
-            alt="psychedelic blob"
+            alt="Blob of Doom"
+            title="It's growing... inside you."
+          />
+          <img
+            class="meme spin"
+            src="https://upload.wikimedia.org/wikipedia/commons/0/02/Skull_and_crossbones.svg"
+            alt="Cursed Skull"
+            title="Death by download."
           />
         </div>
       </section>
 
-      <section class="ticker">
-        <div class="marquee">
+      <section class="whisper-ticker">
+        <div class="marquee insane">
           <span>
-            READ THE INSTRUCTIONS — QUESTION REALITY — HUG YOUR BACKUPS — TRUST
-            THE NOODLES — PATCH NOTES ARE JUST PROPHECIES —
+            PERFORM THE RITUAL — BACKUP YOUR SOUL — VALHEIM AWAITS — OR DOES IT? — CURSED FOREVER —
           </span>
         </div>
       </section>
 
-      <section class="grid-2">
-        <article class="card">
-          <h3>General Instructions</h3>
-          <ol class="steps">
-            <li>Create a clean install of Valheim.</li>
-            <li>Download the latest version from the button above.</li>
-            <li>
-              Navigate to your Valheim installation folder (the one with
-              valheim.exe inside).
-            </li>
-            <li>
-              Open Steam → Library → Right-click Valheim → Manage → Browse local
-              files.
-              <figure class="polaroid" style="margin-top: 10px">
-                <img
-                  src="https://i.imgur.com/0v3c5f3.jpeg"
-                  alt="Steam navigation example to local files"
-                />
-                <figcaption>Obey the cog. It knows the path.</figcaption>
-              </figure>
-            </li>
-            <li>
-              Extract the contents of the archive into the game folder,
-              overwriting files when asked.
-            </li>
-            <li>
-              Launch the game. A mysterious black box may appear alongside the
-              game — this is normal. It whispers kind things.
-            </li>
-            <li>
-              Verify the title screen shows the mod string in the bottom-right,
-              looking similar to:
-              <figure class="polaroid" style="margin-top: 10px">
-                <img
-                  src="https://i.imgur.com/1x8u5bV.png"
-                  alt="Valheim title screen version example"
-                />
-                <figcaption>Behold the sacred corner text.</figcaption>
-              </figure>
-            </li>
-            <li>Connect to the server with the IP/Port from Discord.</li>
-            <li>
-              If you hit issues, purge with fire (verify files) and try again.
-            </li>
-          </ol>
-        </article>
-
-        <aside class="card card-static">
-          <h3>Edge Enhancers</h3>
-          <p>
-            Optional visual corruption packs for your third eye:
-          </p>
-          <ul>
-            <li>
-              <a
-                class="btn mini neon-btn"
-                href="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
-                target="_blank"
-                rel="noopener"
-                >Void Swirl</a
-              >
-            </li>
-            <li>
-              <a
-                class="btn mini ghost-btn"
-                href="https://media.giphy.com/media/26BRzozg4TCBXv6QU/giphy.gif"
-                target="_blank"
-                rel="noopener"
-                >Endless Tunnel</a
-              >
-            </li>
-            <li>
-              <a
-                class="btn mini danger-btn"
-                href="https://media.giphy.com/media/l0Exk8EUzSLsrErEQ/giphy.gif"
-                target="_blank"
-                rel="noopener"
-                >Glitch Cube</a
-              >
-            </li>
-          </ul>
-          <figure class="polaroid tilt" style="margin-top: 12px">
-            <img
-              src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1200&auto=format&fit=crop"
-              alt="Neon skull art"
-            />
-            <figcaption>Install at your own enlightenment.</figcaption>
-          </figure>
-        </aside>
+      <section class="ritual-card">
+        <h3 class="warp-text" data-text="Cursed Installation Ritual">Cursed Installation Ritual</h3>
+        <ol class="cursed-steps">
+          <li>Summon a fresh Valheim realm (clean install, fool).</li>
+          <li>Harvest the poison from above (download, if you dare).</li>
+          <li>Seek the sacred folder (with valheim.exe, the heart of the beast).</li>
+          <li>
+            Consult the steam oracle: Library → Valheim → Manage → Browse local files.
+            <figure class="frame">
+              <img
+                src="media\nav_steam_local_files.png"
+                alt="Steam Oracle Path"
+              />
+              <figcaption>The cog reveals all... or nothing.</figcaption>
+            </figure>
+          </li>
+          <li>Infuse the archive's essence (extract and overwrite, no mercy).</li>
+          <li>Awaken the game. The black void box is your new friend—it chants.</li>
+          <li>
+            Gaze upon the title screen's bottom-right sigil. It should mock you like this:
+            <figure class="frame tilt">
+              <img
+                src="media\bottom-right.png"
+                alt="Sigil of Verification"
+              />
+              <figcaption>If not, the curse failed. Try blood sacrifice.</figcaption>
+            </figure>
+          </li>
+          <li>Commune with the server via Discord's forbidden IP/Port.</li>
+          <li>Fuck you, mortal. The trip is eternal.</li>
+        </ol>
       </section>
 
       <section style="margin-top: 24px">
-        <article class="card">
-          <h3>
-            <img
-              class="skull"
-              src="https://upload.wikimedia.org/wikipedia/commons/0/02/Skull_and_crossbones.svg"
-              alt=""
-            />
-            Previous Versions
-          </h3>
-          <div class="table-wrap">
-            <table class="cursed">
-              <thead>
-                <tr>
-                  <th>Version</th>
-                  <th>Date</th>
-                  <th>Size</th>
-                  <th>Notes</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>None yet. The future is unwritten.</td>
-                  <td>
-                    <span class="badge">N/A</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </article>
+        <h3 class="warp-text" data-text="Ancient Poisons">Ancient Poisons</h3>
+        <table class="edgy-table">
+          <thead>
+            <tr>
+              <th>Version</th>
+              <th>Curse Date</th>
+              <th>Soul Weight</th>
+              <th>Dark Notes</th>
+              <th>
+                <img
+                  class="skull-icon"
+                  src="https://upload.wikimedia.org/wikipedia/commons/0/02/Skull_and_crossbones.svg"
+                  alt=""
+                />
+                Link
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>N/A</td>
+              <td>Eternal Void</td>
+              <td>Infinite</td>
+              <td>The old ones whisper... nothing yet.</td>
+              <td><span class="btn whisper-btn small">Forbidden</span></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </main>
 
-    <footer class="footer crt">
-      <p>
-        © DiarrheaBalls. All rights reversed. Backups are love. Backups are
-        life.
-      </p>
+    <footer class="footer creep">
+      <p>DiarrheaBalls owns your downloads. Backups? Pathetic mortal crutch.</p>
     </footer>
   </body>
 </html>

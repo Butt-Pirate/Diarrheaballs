@@ -1,298 +1,394 @@
-/* Hosted noise tile from GitHub (tiny transparent PNG) */
+/* Fresh noise from Giphy (looping glitch texture) */
 :root {
-    --noise-url: url("https://upload.wikimedia.org/wikipedia/commons/5/5f/White_Noise_Texture.png");
+  --noise-url: url("https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif");
+}
+
+/* Fonts: Creepster for horror, Press Start 2P for retro glitch, VT323 for terminal vibe */
+
+:root {
+  --void: #08080a;
+  --drip: #f72585;
+  --acid: #4cc9f0;
+  --whisper: #fee440;
+  --pulse: #7209b7;
+  --glow: 0 0 8px rgba(247, 37, 133, 0.7), 0 0 24px rgba(76, 201, 240, 0.5);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--void);
+  color: #f0f0f0;
+  font-family: VT323, monospace;
+  line-height: 1.3;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--acid);
+  text-decoration: none;
+}
+
+/* Trip backgrounds */
+
+.bg-trip {
+  position: relative;
+  min-height: 100vh;
+}
+
+.fractal-noise {
+  position: fixed;
+  inset: 0;
+  background: var(--noise-url) repeat;
+  mix-blend-mode: screen;
+  opacity: 0.15;
+  animation: fractal-shift 1s steps(5) infinite;
+  pointer-events: none;
+}
+
+@keyframes fractal-shift {
+  to {
+    background-position: 5px 5px;
   }
-  
-  /* Fonts:
-     - Display: 'Rubik Glitch', 'Rubik Doodle Shadow'
-     - Body: 'Inter'
-  */
-  
-  :root {
-    --bg: #0b0b10;
-    --ink: #e9ffef;
-    --acid: #38f9d7;
-    --hot: #ff4d6d;
-    --zap: #ffd166;
-    --vio: #b388ff;
-    --glow: 0 0 6px rgba(255, 255, 255, 0.6),
-      0 0 18px rgba(56, 249, 215, 0.4);
-    --scan: linear-gradient(
-      rgba(255, 255, 255, 0.05),
-      rgba(0, 0, 0, 0.05)
-    );
+}
+
+.vhs-lines {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 2px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.pulse-blob {
+  position: fixed;
+  width: 80vmax;
+  height: 80vmax;
+  border-radius: 50%;
+  filter: blur(50px) saturate(200%);
+  opacity: 0.3;
+  z-index: -1;
+  animation: pulse 20s infinite alternate ease-in-out;
+}
+
+.pulse-a {
+  background: radial-gradient(circle, var(--drip), transparent 70%);
+  transform: translate(-15%, -15%);
+}
+
+.pulse-b {
+  background: radial-gradient(circle, var(--pulse), transparent 70%);
+  transform: translate(15%, 15%);
+  animation-duration: 25s;
+}
+
+.pulse-void {
+  background: radial-gradient(circle, #000, var(--drip) 30%, transparent 70%);
+  animation-duration: 15s;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1) translate(-15%, -15%); }
+  100% { transform: scale(1.2) translate(15%, 15%); }
+}
+
+/* Glitchy effects */
+
+.glitchy {
+  filter: contrast(110%) saturate(150%);
+  text-shadow: 0.02em 0 0 var(--drip), -0.03em 0 0 var(--acid);
+}
+
+.creep {
+  font-family: "Creepster", cursive;
+  letter-spacing: 0.05em;
+}
+
+.warp-text {
+  position: relative;
+  font-family: "Press Start 2P", cursive;
+  animation: warp 3s infinite;
+}
+
+.warp-text::before,
+.warp-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  mix-blend-mode: difference;
+}
+
+.warp-text::before {
+  color: var(--acid);
+  transform: translate(-3px, -1px);
+  animation: warp-offset 1.5s infinite;
+}
+
+.warp-text::after {
+  color: var(--drip);
+  transform: translate(3px, 1px);
+  animation: warp-offset 2s infinite reverse;
+}
+
+@keyframes warp {
+  50% { letter-spacing: 0.1em; }
+}
+
+@keyframes warp-offset {
+  50% { transform: translate(0, 0); }
+}
+
+/* Layout & Animations */
+
+.header {
+  padding: 20px clamp(12px, 4vw, 40px);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand .logo {
+  font-size: clamp(24px, 5vw, 56px);
+  margin: 0;
+  text-shadow: var(--glow);
+}
+
+.tagline {
+  font-size: clamp(12px, 2vw, 16px);
+  animation: jitter 0.5s infinite;
+}
+
+@keyframes jitter {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-1px, 1px); }
+  50% { transform: translate(1px, -1px); }
+  75% { transform: translate(0, 1px); }
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.btn {
+  padding: 8px 14px;
+  border: 2px solid;
+  border-radius: 8px;
+  font-family: "Press Start 2P", cursive;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: skew(5deg);
+  box-shadow: var(--glow);
+}
+
+.acid-trip {
+  color: var(--acid);
+  border-color: var(--acid);
+}
+
+.void-btn {
+  color: var(--drip);
+  border-color: var(--drip);
+}
+
+.mega-void {
+  font-size: 18px;
+  padding: 12px 18px;
+}
+
+.whisper-btn {
+  color: var(--whisper);
+  border-style: dashed;
+}
+
+.small {
+  font-size: 12px;
+  padding: 6px 10px;
+}
+
+.main {
+  padding: 12px clamp(12px, 4vw, 40px) 40px;
+}
+
+.hero,
+.abyss {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .hero,
+  .abyss {
+    grid-template-columns: 1fr;
   }
-  
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-  
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
-      Arial, "Noto Sans", "Liberation Sans", sans-serif;
-    line-height: 1.4;
-    overflow-x: hidden;
-  }
-  
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  img {
-    max-width: 100%;
-    display: block;
-  }
-  
-  /* Background chaos */
-  
-  .bg-static {
-    position: relative;
-    min-height: 100dvh;
-  }
-  
-  .noise {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background: var(--noise-url),
-      repeating-conic-gradient(
-        from 0deg,
-        rgba(255, 255, 255, 0.02) 0 10deg,
-        rgba(0, 0, 0, 0.02) 10deg 20deg
-      );
-    mix-blend-mode: overlay;
-    opacity: 0.25;
-    animation: hiss 0.7s steps(3) infinite;
-    background-size: 256px 256px, auto;
-  }
-  
-  @keyframes hiss {
-    to {
-      transform: translate3d(2px, -2px, 0);
-    }
-  }
-  
-  .scanline {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image: repeating-linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.05) 0,
-      rgba(255, 255, 255, 0.05) 1px,
-      transparent 2px,
-      transparent 4px
-    );
-    mix-blend-mode: soft-light;
-    opacity: 0.25;
-  }
-  
-  .blob {
-    position: fixed;
-    width: 70vmax;
-    height: 70vmax;
-    border-radius: 50%;
-    filter: blur(60px) saturate(160%);
-    opacity: 0.25;
-    z-index: -1;
-    animation: drift 40s ease-in-out infinite alternate;
-    transform: translate3d(-20%, -10%, 0);
-  }
-  
-  .blob-a {
-    background: radial-gradient(
-      circle at 30% 30%,
-      #39ffb6,
-      transparent 60%
-    );
-  }
-  
-  .blob-b {
-    background: radial-gradient(
-      circle at 70% 70%,
-      #ff4d6d,
-      transparent 60%
-    );
-    animation-duration: 55s;
-    transform: translate3d(20%, 20%, 0);
-  }
-  
-  .blob-danger {
-    background: radial-gradient(circle at 60% 40%, #ff0040, transparent 60%);
-    width: 90vmax;
-    height: 90vmax;
-    animation-duration: 30s;
-  }
-  
-  @keyframes drift {
-    0% {
-      transform: translate3d(-25%, -10%, 0) scale(1);
-    }
-    100% {
-      transform: translate3d(25%, 10%, 0) scale(1.15);
-    }
-  }
-  
-  /* CRT / glitch effects */
-  
-  .crt {
-    text-shadow: 0.03em 0 0 #ff2a6d, -0.02em 0 0 #00d9ff;
-    filter: contrast(105%) saturate(120%);
-  }
-  
-  .flicker {
-    animation: flicker 2.2s infinite steps(30);
-  }
-  
-  @keyframes flicker {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    10% {
-      opacity: 0.85;
-    }
-    20% {
-      opacity: 0.6;
-    }
-    22% {
-      opacity: 0.2;
-    }
-    23% {
-      opacity: 1;
-    }
-    60% {
-      opacity: 0.9;
-    }
-  }
-  
-  .glitch {
-    position: relative;
-    display: inline-block;
-    font-family: "Rubik Glitch", system-ui, sans-serif;
-    letter-spacing: 0.04em;
-  }
-  
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    inset: 0;
-    clip-path: polygon(0 2%, 100% 2%, 100% 35%, 0 35%);
-    mix-blend-mode: difference;
-  }
-  
-  .glitch::before {
-    transform: translate(-2px, -1px);
-    color: #00d9ff;
-    animation: glitchy 2s infinite;
-  }
-  
-  .glitch::after {
-    transform: translate(2px, 1px);
-    color: #ff2a6d;
-    animation: glitchy 1.5s infinite reverse;
-  }
-  
-  @keyframes glitchy {
-    0% {
-      clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%);
-    }
-    20% {
-      clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%);
-    }
-    40% {
-      clip-path: polygon(0 5%, 100% 5%, 100% 25%, 0 25%);
-    }
-    60% {
-      clip-path: polygon(0 70%, 100% 70%, 100% 90%, 0 90%);
-    }
-    80%,
-    100% {
-      clip-path: polygon(0 30%, 100% 30%, 100% 45%, 0 45%);
-    }
-  }
-  
-  /* Layout */
-  
-  .header {
-    padding: 24px clamp(16px, 3vw, 48px);
-  }
-  
-  .header.tight {
-    padding-bottom: 8px;
-  }
-  
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  
-  .brand .logo {
-    font-family: "Rubik Doodle Shadow", system-ui, sans-serif;
-    font-size: clamp(28px, 6vw, 64px);
-    line-height: 1.05;
-    margin: 0 0 6px 0;
-    text-shadow: var(--glow);
-  }
-  
-  .tagline {
-    margin: 0;
-    font-size: clamp(14px, 2.2vw, 18px);
-    opacity: 0.95;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 12px;
-    padding: 0;
-    margin: 8px 0 0 0;
-  }
-  
-  .btn {
-    display: inline-block;
-    padding: 10px 16px;
-    border: 2px solid currentColor;
-    border-radius: 12px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    transition: transform 0.08s ease, filter 0.2s ease;
-    will-change: transform;
-    cursor: pointer;
-    user-select: none;
-  }
-  
-  .btn:hover {
-    transform: translateY(-2px) scale(1.02);
-  }
-  
-  .neon-btn {
-    color: var(--acid);
-    box-shadow: 0 0 12px rgba(56, 249, 215, 0.45);
-  }
-  
-  .danger-btn {
-    color: var(--hot);
-    box-shadow: 0 0 12px rgba(255, 77, 109, 0.4);
-  }
-  
-  .ghost-btn {
-    color: var(--vio);
-    border-style: dashed;
-  }
-  
-  .mega-btn {
-    font-size: clamp(16px, 2.8vw, 22px);
-  }
+}
+
+.headline {
+  font-size: clamp(24px, 6vw, 60px);
+  margin: 0;
+}
+
+.sub,
+.drip {
+  font-size: 15px;
+  animation: drip 4s infinite;
+}
+
+@keyframes drip {
+  50% { opacity: 0.7; transform: translateY(5px); }
+}
+
+.cta-chaos {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.meme-vortex {
+  position: relative;
+  min-height: 280px;
+}
+
+.meme {
+  position: absolute;
+  width: clamp(60px, 16vw, 160px);
+  animation: 5s infinite ease-in-out;
+}
+
+.meme:nth-child(1) { top: 10%; left: 10%; animation-name: wobble; }
+.meme:nth-child(2) { top: 30%; right: 10%; animation-name: spin; }
+.meme:nth-child(3) { bottom: 10%; left: 20%; animation-name: bounce; }
+.meme:nth-child(4) { bottom: 5%; right: 15%; animation-name: tilt; }
+
+@keyframes wobble {
+  50% { transform: rotate(8deg) scale(1.1); }
+}
+
+@keyframes spin {
+  50% { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes tilt {
+  50% { transform: rotate(-10deg); }
+}
+
+.whisper-ticker {
+  overflow: hidden;
+  margin: 16px 0;
+  border-top: 1px dashed var(--whisper);
+  border-bottom: 1px dashed var(--whisper);
+}
+
+.marquee {
+  white-space: nowrap;
+  animation: marquee 15s linear infinite;
+  font-family: "Press Start 2P", cursive;
+  color: var(--whisper);
+  text-shadow: 0 0 6px var(--whisper);
+}
+
+.insane.fast {
+  animation-duration: 6s;
+  color: var(--drip);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.bad-thoughts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.bad-thoughts:hover {
+  opacity: 1;
+}
+
+.thought {
+  padding: 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.card-glitch { animation: glitchy 2s infinite; }
+.card-melt { animation: drip 3s infinite; }
+.card-pulse { animation: pulse 4s infinite; }
+
+.gif-abyss {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.frame {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px var(--glow);
+}
+
+.frame img {
+  border-radius: 6px;
+}
+
+figcaption {
+  text-align: center;
+  font-size: 13px;
+  color: var(--whisper);
+}
+
+.abyss-img {
+  animation: shake 0.6s infinite;
+}
+
+@keyframes shake {
+  50% { transform: translate(2px, -2px); }
+}
+
+.bg-void {
+  background: radial-gradient(circle at center, #000, var(--void));
+}
+
+.footer {
+  padding: 16px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
