@@ -1,19 +1,163 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>DiarrheaBalls</title>
-</head>
-<body>
-	<header>
-		<nav>
-			<div><h1>Welcome to the Diarrheaballs official unofficial website!</h1></div>
-			<ul>
-				<li><a href="downloads.html">Downloads</a></li>
-				<li><a href="frick.html">Don't Click Here</a></li>
-			</ul>
-		</nav>
-	</header>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DiarrheaBalls // Cosmic Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Doodle+Shadow&family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-static">
+    <div class="noise"></div>
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="scanline"></div>
+
+    <header class="header crt">
+      <nav class="nav">
+        <div class="brand">
+          <h1 class="logo flicker">
+            Welcome to the DiarrheaBalls Official Unofficial Website!
+          </h1>
+          <p class="tagline shake">
+            Enter the cosmic porta-potty. Brace for auditory hallucinations of
+            yesterday’s burrito.
+          </p>
+        </div>
+        <ul class="nav-links">
+          <li><a class="btn neon-btn" href="downloads.html">Downloads</a></li>
+          <li>
+            <a class="btn danger-btn" href="frick.html">Don’t Click Here</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="hero">
+        <div class="hero-left">
+          <h2 class="headline glitch" data-text="DIARRHEABALLS SUPREMACY">
+            DIARRHEABALLS SUPREMACY
+          </h2>
+          <p class="sub">
+            Pixels melting, colors yelling, your cursor is now a spirit guide.
+            This site is an astral wedgie delivered by the universe.
+          </p>
+          <div class="cta-row">
+            <a class="btn mega-btn" href="downloads.html">Summon the Files</a>
+            <a class="btn ghost-btn" href="frick.html">Absolutely Don’t</a>
+          </div>
+        </div>
+        <div class="hero-right sticker-wall">
+          <img
+            class="sticker wobble"
+            src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Pepe_the_Frog.svg"
+            alt="mystic frog"
+          />
+          <img
+            class="sticker spinny"
+            src="https://upload.wikimedia.org/wikipedia/commons/0/00/Emoji_u1f480.svg"
+            alt="rainbow skull"
+          />
+          <img
+            class="sticker bounce"
+            src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Emoji_u1f63c.svg"
+            alt="third eye cat (grin cat variant)"
+          />
+          <img
+            class="sticker"
+            src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg"
+            alt="warped banana"
+          />
+          <img
+            class="sticker tilt"
+            src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Eye_icon.svg"
+            alt="watching eye"
+          />
+        </div>
+      </section>
+
+      <section class="ticker">
+        <div class="marquee">
+          <span>
+            WARNING: THE PORTAL IS LEAKING — hydrate your vibe — DiarrheaBalls
+            forever — press any button to continue — trust the noodles — chroma
+            coma — reality.exe not found —
+          </span>
+        </div>
+      </section>
+
+      <section class="cards">
+        <article class="card card-glitch">
+          <h3>Quantum Chuckles</h3>
+          <p>
+            Every click spawns a timeline where your socks are slightly wetter.
+            Accept the dampness.
+          </p>
+          <a class="btn mini" href="downloads.html">Obtain Damp Lore</a>
+        </article>
+
+        <article class="card card-rainbow">
+          <h3>Cosmic Feedback</h3>
+          <p>
+            If you can read this, the mushrooms are reading you back. Wave hi to
+            the pixels.
+          </p>
+          <a class="btn mini" href="mailto:info@example.com">Send Brainwaves</a>
+        </article>
+
+        <article class="card card-static">
+          <h3>Forbidden Button</h3>
+          <p>
+            Clicking may cause screen to speak in tongues. Side effects include
+            giggles and spontaneous wisdom.
+          </p>
+          <a class="btn mini danger-btn" href="frick.html">I Accept Fate</a>
+        </article>
+      </section>
+
+      <section class="gallery">
+        <figure class="polaroid tilt">
+          <img
+            src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
+            alt="void swirl"
+          />
+          <figcaption>Do not stare into the drip too long.</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img
+            src="https://media.giphy.com/media/xT9IgvEw4E7pQ9vZRC/giphy.gif"
+            alt="glitch sun"
+          />
+          <figcaption>The sun is buffering at 144p.</figcaption>
+        </figure>
+        <figure class="polaroid tilt-right">
+          <img
+            src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif"
+            alt="flower echo"
+          />
+          <figcaption>These petals know your passwords.</figcaption>
+        </figure>
+      </section>
+    </main>
+
+    <footer class="footer crt">
+      <p>
+        © DiarrheaBalls. All rights reversed. This site is a sentient lava
+        lamp.
+      </p>
+    </footer>
+
+    <script>
+      // Optional: randomize sticker rotations for extra chaos
+      document.querySelectorAll(".sticker").forEach((el) => {
+        const r = Math.floor(Math.random() * 46) - 23;
+        el.style.transform += " rotate(" + r + "deg)";
+      });
+    </script>
+  </body>
 </html>
