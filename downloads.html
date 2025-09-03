@@ -3,19 +3,32 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 	<title>Downloads</title>
 </head>
 <body>
 	<header>
 		<nav>
-			<ul>
-				<li><a href="index.html">Home</a></li>
-			</ul>
+				<a href="index.html"><button class="navbutton">Home</button></a>
+				<a href="frick.html"><button class="navbutton">Don't Click Here</button></a>
 		</nav>
-		<div><h2>Latest Version</h2></div>
-			<a href="files/DB_002.rar" download>Download</a>
+		<h2>Latest Version</h2>
+			<a href="files/DB_002.rar" download class="downloadbutton"><button>Download</button></a>
 	</header>
-	<div><h3>General Instructions</h3></div>
+	<h3>Changelog</h3>
+	<p id="v2">Version 2</p>
+		<ul>
+			<li>Included YamlDotNet support</li>
+			<li>Replaced EquipmentAndQuickSlots with ExtraSlots</li>
+		</ul>
+	<p id="v2">Added:</p>
+		<ul>
+			<li>SpeedyPaths, StaminaExtended, CandlesForever, Hoe Radius by Aedonthorn, balrond sledgemajster, ProcreationPlus, No Food Degredation, Spearfishing, CheatDeath, Recycle N Reclaim, FearMe.</li>
+		</ul>
+	<div id="div1">
+	<h3>General Installation Instructions</h3>
+		<div id="div2">
 		<ol>
 			<li>Create a clean install of valheim and launch.</li>
 			<li>Once the game has launched and you've reached the menu, you can exit.</li>
@@ -33,13 +46,15 @@
 			<li>Connect to the server with the provided IP/Port in Discord.</li>
 			<li>fuck you.</li>
 		</ol>
-	<div><h3>Update Instructions</h3></div>
+		</div>
+	</div>
+	<h3>Update Instructions</h3>
 		<ol>
-			<li>Delete the BepinEx folder in the Valheim directory.</li>
+			<li>Delete the BepinEx folder in the Valheim directory(see above to find directory).</li>
 			<li>Download the latest version of the server mods at the top.</li>
 			<li>Place the BepInEx folder from the updated zip file into the Valheim Directory.</li>
 		</ol>
-	<div><h3>Previous Versions</h3></div>
+	<h3 id="pv">Previous Versions</h3>
 		<ul>
 			<li><a href="files/DB_001" download>DB_001</a></li>
 		</ul>
