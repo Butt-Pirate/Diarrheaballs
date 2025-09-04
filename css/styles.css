@@ -33,6 +33,22 @@ h3 {
 .navbutton:hover {
 	background-color: #a9a9a9;
 }
+.downloadbutton {
+	display: inline-block;
+	padding: 10px 20px;
+	 margin: 5px;
+	background-color: lightgrey;
+	color: black;
+	text-decoration: none;
+	border: 1px solid black;
+	Border-radius: 8px;
+	font-size: 16px;
+	font-family: sans-serif;
+	transition: background-color;
+}
+.downloadbutton:hover {
+	background-color: #a9a9a9;
+}
 p#v2 {
 	font-style: italic;
 	font-weight: bold;
