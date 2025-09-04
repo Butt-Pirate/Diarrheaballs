@@ -27,6 +27,11 @@ p#v2 {
 	font-weight: bold;
 	text-decoration: dotted underline;
 }
+p#added {
+	font-style: italic;
+	font-weight: bold;
+	text-decoration: dotted underline;
+}
 div#div1 {
 	border: 5px black;
 	border-style: dashed;
